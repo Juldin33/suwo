@@ -4,12 +4,12 @@ Welcome on the **Suwo** repository. This bot has been made by **Cancelled__#9978
 
 # Commands
 
-``s!help``・ To have the commands list
-``s!config``・ To configure the bot *(languages will come soon)*
-``s!avatar``・ To get the message author's profile picture or the mentionned user's profile picture.
-``s!ban``・ To ban a user from your server
-``s!tempban``・ To ban a user for a specific duration
-``s!mute``・ To mute someone on the server *(I'm developping it)*
+* ``s!help``・ To have the commands list
+* ``s!config``・ To configure the bot *(languages will come soon)*
+* ``s!avatar``・ To get the message author's profile picture or the mentionned user's profile picture.
+* ``s!ban``・ To ban a user from your server
+* ``s!tempban``・ To ban a user for a specific duration
+* ``s!mute``・ To mute someone on the server *(I'm developping it)*
 
 **And more...**
 
