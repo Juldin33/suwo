@@ -25,7 +25,7 @@ To watch them add the bot or join our support server.
 
      [Click here](https://top.gg/bot/729365843888046150)
 
-* __Others bots__ :
+## Others bots
 
 ### Music bot
 
