@@ -27,7 +27,7 @@ To watch them add the bot or join our support server.
 
 ## Others bots
 
-### Music bot
+### Music bot (Express)
 
 * **Invite link:** [Link here](https://top.gg/bot/723145818860945490)
 * **Support Server:** [Click here](https://discord.gg/tevWaHR)
