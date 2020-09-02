@@ -36,3 +36,8 @@ __Others bots__ :
 
 **Invite link:** [Link here](https://top.gg/bot/746404171783340164)
 **Support Server:** [Click here](https://discord.gg/tevWaHR)
+
+# Join image layout & example
+
+![layout](wallpaper.jpg)
+![example](image.png)
