@@ -17,25 +17,25 @@ To watch them add the bot or join our support server.
 
 # Links
 
-__Support server__ :
+* __Support server__ :
 
-[Click here](https://discord.gg/EtdaBsf)
+** [Click here](https://discord.gg/EtdaBsf)
 
-__Bot invite link__ :
+* __Bot invite link__ :
 
-[Click here](https://top.gg/bot/729365843888046150)
+** [Click here](https://top.gg/bot/729365843888046150)
 
-__Others bots__ :
+* __Others bots__ :
 
-#### Music bot
+### Music bot
 
-**Invite link:** [Link here](https://top.gg/bot/723145818860945490)
-**Support Server:** [Click here](https://discord.gg/tevWaHR)
+* **Invite link:** [Link here](https://top.gg/bot/723145818860945490)
+* **Support Server:** [Click here](https://discord.gg/tevWaHR)
 
-#### Giveaway bot (GWays)
+### Giveaway bot (GWays)
 
-**Invite link:** [Link here](https://top.gg/bot/746404171783340164)
-**Support Server:** [Click here](https://discord.gg/tevWaHR)
+* **Invite link:** [Link here](https://top.gg/bot/746404171783340164)
+* **Support Server:** [Click here](https://discord.gg/tevWaHR)
 
 # Join image layout & example
 
