@@ -19,11 +19,11 @@ To watch them add the bot or join our support server.
 
 * __Support server__ :
 
-         [Click here](https://discord.gg/EtdaBsf)
+     [Click here](https://discord.gg/EtdaBsf)
 
 * __Bot invite link__ :
 
-         [Click here](https://top.gg/bot/729365843888046150)
+     [Click here](https://top.gg/bot/729365843888046150)
 
 * __Others bots__ :
 
