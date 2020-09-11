@@ -1,6 +1,6 @@
 # Suwo
 
-Welcome on the **Suwo** repository. This bot has been made by **Cancelled__#9978** in July 2020. It's a moderation bot for people who wan't a configurable discord bot.
+Welcome on the **Suwo** repository. This bot has been made by **Cancelled__#2020** in July 2020. It's a moderation bot for people who wan't a configurable discord bot.
 
 # Commands
 
