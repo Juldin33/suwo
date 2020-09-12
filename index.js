@@ -193,10 +193,17 @@ client.on('message', message => {
   const counts = require(path.resolve(path.join('..', 'suwo/database/membersCount.json')));
   const channelCountMemberJoin = require(path.resolve(path.join('..', 'suwo/database/channelCountMemberJoin.json')));
   const customChannelCountNames = require(path.resolve(path.join('..', 'suwo/database/customChannelCountNames.json')));
+  const langues = require(path.resolve(path.join('..', 'suwo/database/langues.json')));
 
   if(!counts[message.guild.id]){
     counts[message.guild.id] = {
       counts: 'false'
+    }
+  }
+  
+  if(!langues[message.guild.id]){
+    langues[message.guild.id] = {
+      langues: 'en'
     }
   }
 
@@ -275,7 +282,10 @@ client.on('message', message => {
   fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinChannel.json')), JSON.stringify(joinsChannel, null, 2), (err) => {
     if(err) console.log(err)
   });
+  fs.writeFile(path.resolve(path.join('..', 'suwo/database/langues.json')), JSON.stringify(langues, null, 2), (err) => {
+    if(err) console.log(err)
+  });
 
 })
 
-client.login("BOT TOKEN")
+client.login("Bot Token")
