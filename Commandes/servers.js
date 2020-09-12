@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const path = require('path');
+var guilds = [];
 
 module.exports.run = async(client, message, args) => {
 
@@ -9,13 +10,17 @@ module.exports.run = async(client, message, args) => {
     if(langue === 'fr'){
         if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Tu n'est pas autorisé(e) a utiliser cette commande !");
     } else if(langue === 'en'){
-        if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("You are not allowed to use that command !");
+        client.guilds.cache.forEach(g => {
+            guilds.push(g.name)
+        });
+        message.channel.send(
+            new Discord.MessageEmbed()
+                .setTitle("Server list")
+                .setDescription(`\n__Servers__ :\n\n${guilds.join(",\n")}`)
+        )
+        guilds = [];
     }
-
-    let botmessage = args.join(" ")
-    message.delete().catch();
-    message.channel.send(botmessage)
 }
 module.exports.help = {
-    name: "say"
+    name: "servers"
 }
