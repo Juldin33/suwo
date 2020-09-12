@@ -4,5 +4,8 @@
   },
   "692790293828861973": {
     "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "737341104457777253": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
   }
 }
