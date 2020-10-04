@@ -15,7 +15,7 @@ module.exports.run = async(client, message, args, prefix) => {
     if(langue === 'fr'){
         if(args[0] === "prefix"){
             let prefixes = require(path.resolve(path.join('..', 'suwo/database/prefixes.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Prefix')
@@ -25,7 +25,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             prefixes[message.guild.id] = {
-                prefixes: args[1]
+                prefixes: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/prefixes.json')), JSON.stringify(prefixes, null, 2), (err) => {
@@ -40,7 +40,7 @@ module.exports.run = async(client, message, args, prefix) => {
             )
         } else if(args[0] === 'join'){
             let joins = require(path.resolve(path.join('..', 'suwo/database/join.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joins[message.guild.id].joins === 'true'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -60,14 +60,14 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joins[message.guild.id] = {
-                joins: args[1]
+                joins: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/join.json')), JSON.stringify(joins, null, 2), (err) => {
                 if(err) console.log(err)
             });
 
-            if(args[1] === 'true'){
+            if(args[0] === 'true'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins')
@@ -85,7 +85,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinimage'){
             let joinsImg = require(path.resolve(path.join('..', 'suwo/database/joinImg.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joinsImg[message.guild.id].joinsImg === 'true'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -105,14 +105,14 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joinsImg[message.guild.id] = {
-                joinsImg: args[1]
+                joinsImg: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinImg.json')), JSON.stringify(joinsImg, null, 2), (err) => {
                 if(err) console.log(err)
             });
 
-            if(args[1] === 'true'){
+            if(args[0] === 'true'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Image')
@@ -130,7 +130,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinchannel'){
             let joinsChannel = require(path.resolve(path.join('..', 'suwo/database/joinChannel.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joinsChannel[message.guild.id].joinsChannel === 'Non défini'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -159,7 +159,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Channel')
@@ -197,18 +197,18 @@ module.exports.run = async(client, message, args, prefix) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Role')
-                        .setDescription(`Le rôle de join est désormais ${joinsRoleId[message.guild.id].joinsRoleId}.`)
+                        .setDescription(`Le rôle de join est désormais <@&${joinsRoleId[message.guild.id].joinsRoleId}>.`)
                         .setTimestamp()
                 )
             }
             
         } else if(args[0] === 'joinmessage'){
             let joinsMsg = require(path.resolve(path.join('..', 'suwo/database/joinMsg.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Join Message')
@@ -219,7 +219,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joinsMsg[message.guild.id] = {
-                joinsMsg: args.slice(1).join(' ')
+                joinsMsg: args.slice(0).join(' ')
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinMsg.json')), JSON.stringify(joinsMsg, null, 2), (err) => {
@@ -228,13 +228,13 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Joins Role')
-                    .setDescription(`Le rôle de join est désormais **${args.slice(1).join(' ')}**`)
+                    .setDescription(`Le rôle de join est désormais **${args.slice(0).join(' ')}**`)
                     .setTimestamp()
             )
             
         } else if(args[0] === 'membercount'){
             let counts = require(path.resolve(path.join('..', 'suwo/database/membersCount.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Member Count System')
@@ -245,7 +245,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             counts[message.guild.id] = {
-                counts: args[1]
+                counts: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/membersCount.json')), JSON.stringify(counts, null, 2), (err) => {
@@ -255,12 +255,12 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Member Count System')
-                    .setDescription(`Le système de comptage de membres est désormais: **${args.slice(1).join(' ')}**`)
+                    .setDescription(`Le système de comptage de membres est désormais: **${args.slice(0).join(' ')}**`)
                     .setTimestamp()
             )
         } else if(args[0] === 'membercountchannel'){
             let channelCountMemberJoin = require(path.resolve(path.join('..', 'suwo/database/channelCountMemberJoin.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(channelCountMemberJoin[message.guild.id].channelCountMemberJoin === 'Non défini'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -289,7 +289,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Member Count System')
@@ -299,7 +299,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
         } else if(args[0] === 'membercountchannelname'){
             let customChannelCountNames = require(path.resolve(path.join('..', 'suwo/database/customChannelCountNames.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Join Message')
@@ -310,7 +310,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             customChannelCountNames[message.guild.id] = {
-                customChannelCountNames: args.slice(1).join(' ')
+                customChannelCountNames: args.slice(0).join(' ')
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/customChannelCountNames.json')), JSON.stringify(customChannelCountNames, null, 2), (err) => {
@@ -320,11 +320,11 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Joins Role')
-                    .setDescription(`Le nom du salon de comptage est désormais **${args.slice(1).join(' ')}**. Il sera modifié dès qu'une modification du nombre de membres sera a effectuer.`)
+                    .setDescription(`Le nom du salon de comptage est désormais **${args.slice(0).join(' ')}**. Il sera modifié dès qu'une modification du nombre de membres sera a effectuer.`)
                     .setTimestamp()
             )
         } else if(args[0] === 'lang'){
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Language')
@@ -333,7 +333,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 )
             }
 
-            if(args[1] != 'en' && args[1] != 'fr'){
+            if(args[0] != 'en' && args[0] != 'fr'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Language')
@@ -343,7 +343,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             langues[message.guild.id] = {
-                langues: args[1]
+                langues: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/langues.json')), JSON.stringify(langues, null, 2), (err) => {
@@ -353,7 +353,7 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Language')
-                    .setDescription(`Le language est désormais \`${args[1]}\``)
+                    .setDescription(`Le language est désormais \`${args[0]}\``)
                     .setTimestamp()
             )
 
@@ -361,7 +361,7 @@ module.exports.run = async(client, message, args, prefix) => {
     } else if(langue === 'en'){
         if(args[0] === "prefix"){
             let prefixes = require(path.resolve(path.join('..', 'suwo/database/prefixes.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Prefix')
@@ -371,7 +371,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             prefixes[message.guild.id] = {
-                prefixes: args[1]
+                prefixes: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/prefixes.json')), JSON.stringify(prefixes, null, 2), (err) => {
@@ -386,7 +386,7 @@ module.exports.run = async(client, message, args, prefix) => {
             )
         } else if(args[0] === 'join'){
             let joins = require(path.resolve(path.join('..', 'suwo/database/join.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joins[message.guild.id].joins === 'true'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -406,14 +406,14 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joins[message.guild.id] = {
-                joins: args[1]
+                joins: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/join.json')), JSON.stringify(joins, null, 2), (err) => {
                 if(err) console.log(err)
             });
 
-            if(args[1] === 'true'){
+            if(args[0] === 'true'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins')
@@ -431,7 +431,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinimage'){
             let joinsImg = require(path.resolve(path.join('..', 'suwo/database/joinImg.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joinsImg[message.guild.id].joinsImg === 'true'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -451,14 +451,14 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joinsImg[message.guild.id] = {
-                joinsImg: args[1]
+                joinsImg: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinImg.json')), JSON.stringify(joinsImg, null, 2), (err) => {
                 if(err) console.log(err)
             });
 
-            if(args[1] === 'true'){
+            if(args[0] === 'true'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Image')
@@ -476,7 +476,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinchannel'){
             let joinsChannel = require(path.resolve(path.join('..', 'suwo/database/joinChannel.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joinsChannel[message.guild.id].joinsChannel === 'Non défini'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -505,7 +505,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Channel')
@@ -516,7 +516,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinrole'){
             let joinsRoleId = require(path.resolve(path.join('..', 'suwo/database/joinRoleId.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(joinsRoleId[message.guild.id].joinsRoleId === 'Non défini'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -536,14 +536,14 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joinsRoleId[message.guild.id] = {
-                joinsRoleId: args[1]
+                joinsRoleId: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinRoleId.json')), JSON.stringify(joinsRoleId, null, 2), (err) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Joins Role')
@@ -554,7 +554,7 @@ module.exports.run = async(client, message, args, prefix) => {
             
         } else if(args[0] === 'joinmessage'){
             let joinsMsg = require(path.resolve(path.join('..', 'suwo/database/joinMsg.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Join Message')
@@ -565,7 +565,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             joinsMsg[message.guild.id] = {
-                joinsMsg: args.slice(1).join(' ')
+                joinsMsg: args.slice(0).join(' ')
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/joinMsg.json')), JSON.stringify(joinsMsg, null, 2), (err) => {
@@ -574,13 +574,13 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Joins Message')
-                    .setDescription(`The message is now : **${args.slice(1).join(' ')}**`)
+                    .setDescription(`The message is now : **${args.slice(0).join(' ')}**`)
                     .setTimestamp()
             )
             
         } else if(args[0] === 'membercount'){
             let counts = require(path.resolve(path.join('..', 'suwo/database/membersCount.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Member Count System')
@@ -591,7 +591,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             counts[message.guild.id] = {
-                counts: args[1]
+                counts: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/membersCount.json')), JSON.stringify(counts, null, 2), (err) => {
@@ -601,12 +601,12 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Member Count System')
-                    .setDescription(`The member count system is now : **${args.slice(1).join(' ')}**`)
+                    .setDescription(`The member count system is now : **${args.slice(0).join(' ')}**`)
                     .setTimestamp()
             )
         } else if(args[0] === 'membercountchannel'){
             let channelCountMemberJoin = require(path.resolve(path.join('..', 'suwo/database/channelCountMemberJoin.json')));
-            if(!args[1]){
+            if(!args[0]){
                 if(channelCountMemberJoin[message.guild.id].channelCountMemberJoin === 'Non défini'){
                     return message.channel.send(
                         new discord.MessageEmbed()
@@ -635,7 +635,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 if(err) console.log(err)
             });
 
-            if(args[1]){
+            if(args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Member Count System')
@@ -645,7 +645,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
         } else if(args[0] === 'membercountchannelname'){
             let customChannelCountNames = require(path.resolve(path.join('..', 'suwo/database/customChannelCountNames.json')));
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Join Message')
@@ -656,7 +656,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             customChannelCountNames[message.guild.id] = {
-                customChannelCountNames: args.slice(1).join(' ')
+                customChannelCountNames: args.slice(0).join(' ')
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/customChannelCountNames.json')), JSON.stringify(customChannelCountNames, null, 2), (err) => {
@@ -666,11 +666,11 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Joins Role')
-                    .setDescription(`The member count channel's name is now **${args.slice(1).join(' ')}**. It will be change at the next update.`)
+                    .setDescription(`The member count channel's name is now **${args.slice(0).join(' ')}**. It will be change at the next update.`)
                     .setTimestamp()
             )
         } else if(args[0] === 'lang'){
-            if(!args[1]){
+            if(!args[0]){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Language')
@@ -679,7 +679,7 @@ module.exports.run = async(client, message, args, prefix) => {
                 )
             }
 
-            if(args[1] != 'en' && args[1] != 'fr'){
+            if(args[0] != 'en' && args[0] != 'fr'){
                 return message.channel.send(
                     new discord.MessageEmbed()
                         .setTitle('Language')
@@ -689,7 +689,7 @@ module.exports.run = async(client, message, args, prefix) => {
             }
 
             langues[message.guild.id] = {
-                langues: args[1]
+                langues: args[0]
             }
 
             fs.writeFile(path.resolve(path.join('..', 'suwo/database/langues.json')), JSON.stringify(langues, null, 2), (err) => {
@@ -699,7 +699,7 @@ module.exports.run = async(client, message, args, prefix) => {
             return message.channel.send(
                 new discord.MessageEmbed()
                     .setTitle('Language')
-                    .setDescription(`The new language is \`${args[1]}\``)
+                    .setDescription(`The new language is \`${args[0]}\``)
                     .setTimestamp()
             )
 

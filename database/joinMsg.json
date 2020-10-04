@@ -7,5 +7,38 @@
   },
   "737341104457777253": {
     "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "755087764382548168": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "757202727531970641": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "757205965924728884": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "748951276661899364": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "723924776988573698": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "757256585218228284": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "755810374925942875": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "759764470439477268": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "759517230202486826": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "760082717190127636": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
+  },
+  "761279501035634708": {
+    "joinsMsg": "**Bienvenue {user.mention} sur le serveur.**"
   }
 }

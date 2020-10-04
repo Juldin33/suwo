@@ -26,7 +26,19 @@ module.exports.run = async(client, message, args) => {
                 
                 > 💽 **Os:** Linux
                 > 💿 **RAM Totale:** ${totalMemory} GB
-                > 🗑️ **RAM Utilisée:** ${usedMemory} GB *(${getpercentage})*`)
+                > 🗑️ **RAM Utilisée:** ${usedMemory} GB *(${getpercentage})*
+
+                🤖 **__Informations sur le bot__:**
+
+                > 👑 **Créateur:** <@661525561394462730>
+                > 🏙️ **Serveurs:** ${client.guilds.cache.size}
+                > 👤 **Utilisateurs:** ${client.users.cache.size}
+
+                🔗 **__Liens__:**
+                
+                > \🔗 **Invitation:** [Clique ici](https://discord.com/oauth2/authorize?client_id=729365843888046150&permissions=8&scope=bot)
+                > \💡 **Serveur support:** [Clique pour rejoindre](https://discord.gg/TnqWGGu)
+                > <:github:753997514612539422> **Github:** [Mon github](https://github.com/refreesh/suwo)`)
         );
     } else if(langue === 'en'){
         message.channel.send(
@@ -39,6 +51,12 @@ module.exports.run = async(client, message, args) => {
                 > \💽 **Os:** Linux
                 > \💿 **Total RAM:** ${totalMemory} GB
                 > \🗑️ **Used RAM:** ${usedMemory} GB *(${getpercentage})*
+
+                🤖 **__Bot informations__:**
+
+                > 👑 **Creator:** <@661525561394462730>
+                > 🏙️ **Guilds:** ${client.guilds.cache.size}
+                > 👤 **Users:** ${client.users.cache.size}
                 
                 🔗 **__Links__:**
                 

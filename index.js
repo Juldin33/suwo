@@ -30,7 +30,7 @@ fs.readdir('./Events/', (error, f) => {
 });
 
 client.on('guildCreate', guild => {
-    client.users.get("661525561394462730").send("J'ai été ajouté à un serveur !");
+    client.users.cache.get("661525561394462730").send("J'ai été ajouté à un serveur !");
 });
 
 const activities_list = [
@@ -51,6 +51,20 @@ const activities_list = [
       `${client.user.username} connecté ${client.users.cache.size} utilisateurs !`
     );
 
+    let guild = client.guilds.cache.find(g => g.id === '755087764382548168')
+    setInterval(() => {
+      guild.setName(`Discord.js - BOTMAKER`)
+      console.log(`Nom changé:` + guild.name)
+      setTimeout(() => {
+        guild.setName(`FREE - BotMaker`)
+        console.log(`Nom changé:` + guild.name)
+        setTimeout(() => {
+          guild.setName(`BotMakers - Only FREE`)
+          console.log(`Nom changé:` + guild.name)
+        }, 1200000)
+      }, 1200000)
+    }, 3600000)
+
   });
 
   const applyText = (canvas, text) => {
@@ -59,7 +73,7 @@ const activities_list = [
     const fontSize = 70;
   
     do {
-      ctx.font = `${fontSize -= 10}px sans-serif`;
+      ctx.font = `${fontSize -= 10}px Roboto`;
     } while (ctx.measureText(text).width > canvas.width - 300);
   
     return ctx.font;
@@ -88,7 +102,21 @@ const activities_list = [
 
     if(count){
       if(countChannel != 'Non défini'){
-        member.guild.channels.cache.find(ch => ch.id === countChannel).setName(customChannelCountName.replace('{count}', member.guild.memberCount))
+        let c = member.guild.channels.cache.find(ch => ch.id === countChannel)
+        if(!c) {
+          c = await member.guild.channels.create(customChannelCountName.replace('{count}', member.guild.memberCount), {
+            type: 'voice'
+          });
+          channelCountMemberJoin[member.guild.id] = {
+            channelCountMemberJoin: c.id
+          }
+           
+          fs.writeFile(path.resolve(path.join('..', 'suwo/database/channelCountMemberJoin.json')), JSON.stringify(channelCountMemberJoin, null, 2), (err) => {
+            if(err) console.log(err)
+          });
+        } else {
+          c.setName(customChannelCountName.replace('{count}', member.guild.memberCount))
+        }
       } else{
         const c = await member.guild.channels.create(customChannelCountName.replace('{count}', member.guild.memberCount), {
           type: 'voice'
@@ -114,7 +142,7 @@ const activities_list = [
     }
 
     if(joinRoleId != 'Non défini'){
-      const r = member.guild.roles.cache.find(role => role.name === joinRoleId);
+      const r = member.guild.roles.cache.find(role => role.id === joinRoleId);
       member.roles.add(r.id)
     }
 
@@ -131,16 +159,16 @@ const activities_list = [
       ctx.strokeStyle = '#74037b';
       ctx.strokeRect(0, 0, canvas.width, canvas.height);
     
-      ctx.font = '28px sans-serif';
-      ctx.fillStyle = '#ffffff';
+      ctx.font = '28px Roboto';
+      ctx.fillStyle = '#353535';
       ctx.fillText(`${member.displayName}`, canvas.width / 2.9, canvas.height / 2.2);
     
-      ctx.font = '28px sans-serif';
-      ctx.fillStyle = '#ffffff';
+      ctx.font = '28px Roboto';
+      ctx.fillStyle = '#353535';
       ctx.fillText(`${member.user.discriminator}`, canvas.width / 2.6, canvas.height / 1.6);
     
-      ctx.font = '24px sans-serif';
-      ctx.fillStyle = '#ffffff';
+      ctx.font = '24px Roboto';
+      ctx.fillStyle = '#353535';
       ctx.fillText(`Bienvenue sur ${member.guild.name}`, canvas.width / 3.0, canvas.height / 1.15);
     
       ctx.beginPath();
@@ -175,7 +203,21 @@ const activities_list = [
     
     if(count){
       if(countChannel != 'Non défini'){
-        member.guild.channels.cache.find(ch => ch.id === countChannel).setName(customChannelCountName.replace('{count}', member.guild.memberCount))
+        let c = member.guild.channels.cache.find(ch => ch.id === countChannel)
+        if(!c) {
+          c = await member.guild.channels.create(customChannelCountName.replace('{count}', member.guild.memberCount), {
+            type: 'voice'
+          });
+          channelCountMemberJoin[member.guild.id] = {
+            channelCountMemberJoin: c.id
+          }
+           
+          fs.writeFile(path.resolve(path.join('..', 'suwo/database/channelCountMemberJoin.json')), JSON.stringify(channelCountMemberJoin, null, 2), (err) => {
+            if(err) console.log(err)
+          });
+        } else {
+          c.setName(customChannelCountName.replace('{count}', member.guild.memberCount))
+        }
       }
     }
   })
@@ -288,4 +330,97 @@ client.on('message', message => {
 
 })
 
-client.login("Bot Token")
+const xpfile = require(path.resolve(path.join('..', 'suwo/database/xp.json')));
+
+
+client.on("message" ,function(message) {
+  if(message.author.bot) return;
+  var addXP = Math.floor(Math.random() * 10); //when i type addXP it will randomly choose a number between 1-10   [  Math.floor(Math.random() * 10)  ]
+// lvl 1 statics
+  if(!xpfile[message.guild.id]){
+    xpfile[message.guild.id] = {
+
+    }
+    fs.writeFile(path.resolve(path.join('..', 'suwo/database/warns.json')), JSON.stringify(xpfile, null, 2), (err) => {
+        if(err) console.log(err)
+    });
+  }
+  if(!xpfile[message.guild.id][message.author.id]) {
+      xpfile[message.guild.id][message.author.id] = {
+         xp: 0,
+         level: 1,
+         reqxp: 100
+      }
+// catch errors
+    fs.writeFile(path.resolve(path.join('..', 'suwo/database/xp.json')), JSON.stringify(xpfile, null, 2), (err) => {
+      if(err) console.log(err)
+    });
+  }
+
+  xpfile[message.guild.id][message.author.id].xp += addXP
+
+  if(xpfile[message.guild.id][message.author.id].xp > xpfile[message.guild.id][message.author.id].reqxp){
+      xpfile[message.guild.id][message.author.id].xp -= xpfile[message.guild.id][message.author.id].reqxp // it will subtrsct xp whenever u pass a lvl
+      xpfile[message.guild.id][message.author.id].reqxp *= 2 // XP you need to increase if level 1 is 100 xp so lvl 2 will 200 xp (multiplied by 2 [   .reqxp *= 2  ])
+      xpfile[message.guild.id][message.author.id].reqxp = Math.floor(xpfile[message.guild.id][message.author.id].reqxp) // XP Round
+      xpfile[message.guild.id][message.author.id].level += 1 // it add 1 level when u level up
+      
+      message.reply("vous ètes désormais niveau **"+xpfile[message.guild.id][message.author.id].level+"** !").then( 
+          msg=>msg.delete({timeout: "10000"})
+      )
+
+  }
+  fs.writeFile(path.resolve(path.join('..', 'suwo/database/xp.json')), JSON.stringify(xpfile, null, 2), (err) => {
+    if(err) console.log(err)
+  });
+})
+
+const mongoose = require("mongoose");
+mongoose.connect("mongodb://51.255.103.31/", {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+})
+
+const ReactionModel = require("./models/ReactionRole");
+client.on('messageReactionAdd', (reaction, user) => {
+  let member = reaction.message.guild.members.cache.get(user.id);
+  ReactionModel.findOne(
+    {
+      Guild: reaction.message.guild.id,
+      Reaction: reaction.emoji.toString(),
+      MessageID: reaction.message.id,
+    },
+    async (err, data) => {
+      if (err) throw err;
+      if (data) {
+        if (!member.roles.cache.has(data.Role)) {
+          member.roles.add(data.Role);
+        } else {
+        }
+      }
+    }
+  );
+})
+
+client.on('messageReactionRemove', (reaction, user) => {
+  let member = reaction.message.guild.members.cache.get(user.id);
+  ReactionModel.findOne(
+    {
+      Guild: reaction.message.guild.id,
+      Reaction: reaction.emoji.toString(),
+      MessageID: reaction.message.id,
+    },
+    async (err, data) => {
+      if (err) throw err;
+      if (data) {
+        if (member.roles.cache.has(data.Role)) {
+          member.roles.remove(data.Role);
+        } else {
+        }
+      }
+    }
+  );
+})
+
+
+client.login("NzI5MzY1ODQzODg4MDQ2MTUw.XwH44A.hx_otzx_PAT1NiCBXfqRXBp0Boc")
