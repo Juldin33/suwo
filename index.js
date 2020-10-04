@@ -375,52 +375,6 @@ client.on("message" ,function(message) {
   });
 })
 
-const mongoose = require("mongoose");
-mongoose.connect("mongodb://51.255.103.31/", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-})
-
-const ReactionModel = require("./models/ReactionRole");
-client.on('messageReactionAdd', (reaction, user) => {
-  let member = reaction.message.guild.members.cache.get(user.id);
-  ReactionModel.findOne(
-    {
-      Guild: reaction.message.guild.id,
-      Reaction: reaction.emoji.toString(),
-      MessageID: reaction.message.id,
-    },
-    async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        if (!member.roles.cache.has(data.Role)) {
-          member.roles.add(data.Role);
-        } else {
-        }
-      }
-    }
-  );
-})
-
-client.on('messageReactionRemove', (reaction, user) => {
-  let member = reaction.message.guild.members.cache.get(user.id);
-  ReactionModel.findOne(
-    {
-      Guild: reaction.message.guild.id,
-      Reaction: reaction.emoji.toString(),
-      MessageID: reaction.message.id,
-    },
-    async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        if (member.roles.cache.has(data.Role)) {
-          member.roles.remove(data.Role);
-        } else {
-        }
-      }
-    }
-  );
-})
 
 
-client.login("NzI5MzY1ODQzODg4MDQ2MTUw.XwH44A.hx_otzx_PAT1NiCBXfqRXBp0Boc")
+client.login("BOT TOKEN")
